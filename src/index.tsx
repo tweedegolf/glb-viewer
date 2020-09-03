@@ -7,6 +7,7 @@ import { RESIZE } from "./constants";
 import { ThreeContainer } from "./components/ThreeContainer";
 import { setupObservers } from "./observers";
 import { createWorld } from "./world";
+import { Canvas, useFrame } from "react-three-fiber";
 
 render(
   <Provider store={store}>
