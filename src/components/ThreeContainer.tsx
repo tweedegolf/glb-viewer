@@ -1,22 +1,20 @@
 import React, { useEffect, RefObject, useRef } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { setThreeContainerRef } from "../redux/actions/setThreeContainerRef";
-import { RootState } from "../types";
+import { useStore, Store } from "../store";
 
 export const ThreeContainer = (): JSX.Element => {
   const ref: RefObject<HTMLDivElement> = useRef();
-  const dispatch = useDispatch();
-  const width = useSelector((state: RootState) => state.width);
-  const height = useSelector((state: RootState) => state.height);
+  // const dispatch = useDispatch();
+  const width = useStore((state: Store) => state.width);
+  const height = useStore((state: Store) => state.height);
   const style = {
     width: `${width}px`,
     height: `${height}px`,
   };
-
+  console.log(width, height);
   useEffect(() => {
     if (ref.current) {
       console.log("update");
-      dispatch(setThreeContainerRef(ref.current));
+      // dispatch(setThreeContainerRef(ref.current));
     }
   }, [ref.current]);
 
