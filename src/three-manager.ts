@@ -10,6 +10,7 @@ import {
   PlaneBufferGeometry,
   MeshBasicMaterial,
 } from "three";
+import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import { useStore3D, Store3D } from "./store-3d";
 
 export type ThreeManager = {
@@ -33,9 +34,9 @@ const createCamera = (width: number, height: number): PerspectiveCamera => {
   return camera;
 };
 
-const createRenderer = (width: number, height: number): WebGLRenderer => {
-  const renderer = new WebGLRenderer();
-  renderer.setClearColor(0xffffff, 1);
+const createRenderer = (canvas: HTMLCanvasElement): WebGLRenderer => {
+  const renderer = new WebGLRenderer({ canvas });
+  // renderer.setClearColor(0xffffff, 1);
   // renderer.shadowMap.type = PCFSoftShadowMap;
   renderer.setSize(window.innerWidth, window.innerHeight);
   renderer.outputEncoding = sRGBEncoding;
@@ -63,7 +64,7 @@ const createWorld = (): Mesh => {
     // new MeshBasicMaterial({ opacity: 1, color: 0x003300 })
     new MeshBasicMaterial({ opacity: 1, color: 0x003300, wireframe: true })
   );
-  // world.rotation.x -= Math.PI / 2;
+  world.rotation.x -= Math.PI / 2;
   // world.rotation.x += Math.PI / 2;
   // world.rotation.x += Math.PI;
   world.position.y = 50;
@@ -78,7 +79,7 @@ export const createThreeManager = (canvas: HTMLCanvasElement): void => {
   const height = window.innerHeight;
   const scene = new Scene();
   const camera = createCamera(width, height);
-  const renderer = createRenderer(width, height);
+  const renderer = createRenderer(canvas);
   const world = createWorld();
 
   // scene.add(spot);
@@ -98,6 +99,8 @@ export const createThreeManager = (canvas: HTMLCanvasElement): void => {
     }
   );
   useStore3D.setState({ width: window.innerWidth, height: window.innerHeight, canvas });
+
+  const controls = new OrbitControls(camera, renderer.domElement);
 
   const render = () => {
     renderer.render(scene, camera);
