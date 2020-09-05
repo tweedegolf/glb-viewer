@@ -7,6 +7,7 @@ export type Store3D = {
   canvas: HTMLCanvasElement;
   model: Object3D;
   mirror: boolean;
+  gen1: boolean;
 };
 
 export const useStore3D = create<Store3D>(
@@ -16,5 +17,6 @@ export const useStore3D = create<Store3D>(
     model: null,
     canvas: null,
     mirror: false,
+    gen1: false,
   })
 );

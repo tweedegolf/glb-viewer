@@ -2,6 +2,7 @@ import { useStore3D, Store3D } from "./store";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import { DRACOLoader } from "three/examples/jsm/loaders/DRACOLoader";
 
+let gen1 = false;
 const fileReader = new FileReader();
 const loader = new GLTFLoader();
 const dracoLoader = new DRACOLoader();
@@ -11,13 +12,14 @@ loader.setDRACOLoader(dracoLoader);
 fileReader.addEventListener("load", async () => {
   const model = await loader.loadAsync(fileReader.result as string);
   // console.log(model);
-  useStore3D.setState({ model: model["scene"] });
+  useStore3D.setState({ model: model["scene"], gen1 });
 });
 
 const loadFiles = (files: FileList) => {
   const file = files[0];
   const type = file.type;
   const name = file.name;
+  gen1 = name.indexOf(".1.glb") !== -1;
   if (name.indexOf(".glb") !== null || type === "glb") {
     fileReader.readAsDataURL(file);
   }

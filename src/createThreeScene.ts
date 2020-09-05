@@ -117,11 +117,18 @@ export const removeModel = (model: Object3D, world: Mesh) => {
   world.remove(world.children[0]);
 };
 
-export const addModel = (model: Object3D, world: Mesh, mirror: boolean = false): void => {
+export const addModel = (
+  model: Object3D,
+  world: Mesh,
+  mirror: boolean = false,
+  gen1: boolean = false
+): void => {
   // console.log(model, world);
-  model.scale.x = 100 / 2;
-  model.scale.y = 100 / 2;
-  model.scale.z = 100 / 2;
+  if (gen1 === true) {
+    model.scale.x = 100 / 2;
+    model.scale.y = 100 / 2;
+    model.scale.z = 100 / 2;
+  }
 
   model.traverse(obj => {
     if (obj instanceof Mesh) {

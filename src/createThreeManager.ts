@@ -50,7 +50,7 @@ export const createThreeManager = (canvas: HTMLCanvasElement): void => {
   useStore3D.setState({ width: window.innerWidth, height: window.innerHeight, canvas });
 
   useStore3D.subscribe(
-    ({ model, mirror }) => {
+    ({ model, mirror, gen1 }) => {
       if (model === null) {
         return;
       } else if (model.uuid === modelId) {
@@ -58,10 +58,10 @@ export const createThreeManager = (canvas: HTMLCanvasElement): void => {
       } else {
         modelId = model.uuid;
         world.remove(world.children[2]);
-        addModel(model, world, mirror);
+        addModel(model, world, mirror, gen1);
       }
     },
-    (state: Store3D) => ({ model: state.model, mirror: state.mirror })
+    (state: Store3D) => ({ model: state.model, mirror: state.mirror, gen1: state.gen1 })
   );
 
   const render = () => {
