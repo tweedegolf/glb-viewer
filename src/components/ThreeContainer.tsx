@@ -1,5 +1,5 @@
 import React, { useEffect, RefObject, useRef } from "react";
-import { createThreeManager } from "../three-manager";
+import { createThreeManager } from "../createThreeManager";
 // import { useStore, Store } from "../store";
 
 export const ThreeContainer = (): JSX.Element => {

@@ -1,13 +1,9 @@
-import React, { Suspense } from "react";
+import "./styles/index.scss";
+import React from "react";
 import { render } from "react-dom";
 import { useStore3D } from "./store-3d";
-// import { Provider } from "react-redux";
-import "./styles/index.scss";
-// import { store } from "./redux/store";
-// import { RESIZE } from "./constants";
 import { ThreeContainer } from "./components/ThreeContainer";
-// import { setupObservers } from "./observers";
-// import { createWorld } from "./world";
+import { setupDropArea } from "./setupDropArea";
 
 const resize = () => {
   useStore3D.setState({
@@ -20,11 +16,8 @@ render(
   <>
     <ThreeContainer></ThreeContainer>
   </>,
-  document.getElementById("app")
-  // resize
+  document.getElementById("app"),
+  setupDropArea
 );
-
-// const world = createWorld();
-// setupObservers(world);
 
 window.addEventListener("resize", resize);

@@ -51,6 +51,8 @@ export const createThreeManager = (canvas: HTMLCanvasElement): void => {
       } else if (model.uuid === modelId) {
         mirrorModel(model, mirror);
       } else {
+        modelId = model.uuid;
+        world.remove(world.children[0]);
         addModel(model, world, mirror);
       }
     },

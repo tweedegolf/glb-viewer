@@ -21,7 +21,7 @@ import {
 } from "three";
 
 export const createCamera = (width: number, height: number): PerspectiveCamera => {
-  const camera = new PerspectiveCamera(75, width / height, 0.1, 1000);
+  const camera = new PerspectiveCamera(50, width / height, 20, 50000);
   camera.position.z = 200;
   camera.position.x = 0;
   camera.position.y = 100;
@@ -79,14 +79,19 @@ export const mirrorModel = (model: Object3D, mirror: boolean) => {
   }
 };
 
+export const removeModel = (model: Object3D, world: Mesh) => {
+  world.remove(world.children[0]);
+};
+
 export const addModel = (model: Object3D, world: Mesh, mirror: boolean = false): void => {
-  model.scale.x = 100;
-  model.scale.y = 100;
-  model.scale.z = 100;
+  // console.log(model, world);
+  model.scale.x = 100 / 2;
+  model.scale.y = 100 / 2;
+  model.scale.z = 100 / 2;
+
   model.traverse(obj => {
     if (obj instanceof Mesh) {
       const mesh = obj as Mesh;
-      this.geometries.push(mesh.geometry);
       mesh.castShadow = true;
       mesh.receiveShadow = true;
       if (mesh.material) {
