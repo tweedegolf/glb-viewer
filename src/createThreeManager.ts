@@ -1,6 +1,6 @@
 import { Object3D, Scene } from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
-import { useStore3D, Store3D } from "./store-3d";
+import { useStore3D, Store3D } from "./store";
 import {
   createCamera,
   createRenderer,
@@ -8,7 +8,7 @@ import {
   addModel,
   mirrorModel,
   setUpLighting,
-} from "./three-create";
+} from "./createThreeScene";
 
 export type ThreeManager = {
   render: () => void;

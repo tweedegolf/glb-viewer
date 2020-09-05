@@ -1,22 +1,20 @@
 import create from "zustand";
+import { Object3D } from "three";
 
-export type Store = {
-  bears: number;
+export type Store3D = {
   width: number;
   height: number;
-  increasePopulation: () => void;
-  removeAllBears: () => void;
+  canvas: HTMLCanvasElement;
+  model: Object3D;
+  mirror: boolean;
 };
 
-export const useStore = create<Store>(
-  (set): Store => ({
-    bears: 10,
+export const useStore3D = create<Store3D>(
+  (set): Store3D => ({
     width: 10,
     height: 10,
-    increasePopulation: () =>
-      set(state => {
-        return { bears: state.bears + 1 };
-      }),
-    removeAllBears: () => set({ bears: 0 }),
+    model: null,
+    canvas: null,
+    mirror: false,
   })
 );

@@ -1,8 +1,8 @@
 import "./styles/index.scss";
 import React from "react";
 import { render } from "react-dom";
-import { useStore3D } from "./store-3d";
-import { ThreeContainer } from "./components/ThreeContainer";
+import { useStore3D } from "./store";
+import { ThreeContainer } from "./ThreeContainer";
 import { setupDropArea } from "./setupDropArea";
 
 const resize = () => {

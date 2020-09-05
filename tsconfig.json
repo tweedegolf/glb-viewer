@@ -12,7 +12,7 @@
     "jsx": "react",
     "allowJs": true,
     "skipLibCheck": true,
-    "types": ["redux", "react"],
+    "types": ["react"],
     "typeRoots": ["./node_modules/@types"],
     "lib": ["dom", "es6", "es2018"],
     "outDir": "./dist/",
