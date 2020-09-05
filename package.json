@@ -40,18 +40,7 @@
   "scripts": {
     "tsn": "ts-node",
     "build": "webpack --config ./webpack.config.js",
-    "dev": "webpack-dev-server --display-error-details",
-    "tsc": "node_modules/.bin/tsc --module commonjs --esModuleInterop --declaration --outDir dist ./src/index.ts",
-    "prepublishOnly": "npm run tsc",
-    "update_db": "PGUSER=tg PGHOST=127.0.0.1 PGDATABASE=tekenjetuin ts-node ./scripts/update_db.ts",
-    "rename": "ts-node ./scripts/rename.ts",
-    "convert": "ts-node ./scripts/convert.ts",
-    "find_doubles": "ts-node ./scripts/find_doubles.ts",
-    "find_missing": "ts-node ./scripts/find_missing.ts",
-    "find_missing2": "ts-node ./scripts/find_missing2.ts",
-    "find_used_models": "PGUSER=tg PGHOST=127.0.0.1 PGDATABASE=tekenjetuin ts-node ./scripts/find_used_models.ts",
-    "models_in_database": "PGUSER=tg PGHOST=127.0.0.1 PGDATABASE=tekenjetuin ts-node ./scripts/models_in_database.ts",
-    "find_dropped_models": "PGUSER=tg PGHOST=127.0.0.1 PGDATABASE=tekenjetuin ts-node ./scripts/find_dropped_models.ts"
+    "dev": "webpack-dev-server --display-error-details"
   },
   "keywords": [],
   "author": "daniel@abumarkub.net",

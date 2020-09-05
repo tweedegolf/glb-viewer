@@ -90,7 +90,7 @@ export const addSkyDome = (parent: Object3D): void => {
 
 export const addReferenceBox = (parent: Object3D, size: number = 500): void => {
   const geometry = new BoxGeometry(size, size, size);
-  const material = new MeshBasicMaterial({ color: 0x555000, wireframe: true });
+  const material = new MeshBasicMaterial({ color: 0x777000, wireframe: true });
   const cube = new Mesh(geometry, material);
   cube.position.z = size / 2;
   // return cube;
@@ -100,7 +100,7 @@ export const addReferenceBox = (parent: Object3D, size: number = 500): void => {
 export const createWorld = (): Mesh => {
   const world = new Mesh(
     new PlaneBufferGeometry(400, 400, 10, 10),
-    new MeshBasicMaterial({ opacity: 1, color: 0x003300, wireframe: true })
+    new MeshBasicMaterial({ opacity: 0.1, color: 0x647d82, wireframe: true })
   );
   world.rotation.x -= Math.PI / 2;
   world.receiveShadow = true;
