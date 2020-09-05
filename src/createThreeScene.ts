@@ -18,13 +18,18 @@ import {
   DirectionalLight,
   Vector2,
   PCFSoftShadowMap,
+  TextureLoader,
+  SphereBufferGeometry,
+  MeshLambertMaterial,
+  BackSide,
+  BoxGeometry,
 } from "three";
 
 export const createCamera = (width: number, height: number): PerspectiveCamera => {
   const camera = new PerspectiveCamera(50, width / height, 20, 50000);
-  camera.position.z = 200;
+  camera.position.z = 400;
   camera.position.x = 0;
-  camera.position.y = 100;
+  camera.position.y = 200;
   camera.lookAt(new Vector3(0, 0, 0));
   return camera;
 };
@@ -61,14 +66,43 @@ export const setUpLighting = (scene: Scene, maxSize: number) => {
   scene.add(light);
 };
 
+export const addSkyDome = (parent: Object3D): void => {
+  const loader = new TextureLoader();
+  const mesh = new Object3D();
+
+  loader.load("./skydome.jpg", (texture: THREE.Texture) => {
+    texture.encoding = sRGBEncoding;
+    const geometry = new SphereBufferGeometry(1000, 60, 40);
+    const material = new MeshLambertMaterial({ map: texture });
+
+    material.side = BackSide;
+    material.transparent = false;
+    material.fog = false;
+
+    const box = new Mesh(geometry, material);
+    box.scale.set(-1, 1, 1);
+    box.rotation.order = "XZY";
+    box.renderOrder = 1000.0;
+    box.rotation.x = Math.PI / 2;
+    parent.add(box);
+  });
+};
+
+export const addReferenceBox = (parent: Object3D, size: number = 500): void => {
+  const geometry = new BoxGeometry(size, size, size);
+  const material = new MeshBasicMaterial({ color: 0x555000, wireframe: true });
+  const cube = new Mesh(geometry, material);
+  cube.position.z = size / 2;
+  // return cube;
+  parent.add(cube);
+};
+
 export const createWorld = (): Mesh => {
   const world = new Mesh(
-    new PlaneBufferGeometry(200, 200, 10, 10),
+    new PlaneBufferGeometry(400, 400, 10, 10),
     new MeshBasicMaterial({ opacity: 1, color: 0x003300, wireframe: true })
   );
   world.rotation.x -= Math.PI / 2;
-  world.position.y = 50;
-  world.position.z = 50;
   world.receiveShadow = true;
   return world;
 };

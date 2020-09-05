@@ -1,4 +1,4 @@
-import { Object3D, Scene } from "three";
+import { Object3D, AxesHelper, Scene } from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import { useStore3D, Store3D } from "./store";
 import {
@@ -8,6 +8,8 @@ import {
   addModel,
   mirrorModel,
   setUpLighting,
+  addSkyDome,
+  addReferenceBox,
 } from "./createThreeScene";
 
 export type ThreeManager = {
@@ -28,6 +30,9 @@ export const createThreeManager = (canvas: HTMLCanvasElement): void => {
 
   scene.add(world);
   scene.add(camera);
+  scene.add(new AxesHelper(500));
+  addReferenceBox(world, 100);
+  addSkyDome(world);
   setUpLighting(scene, renderer.capabilities.maxTextureSize);
 
   useStore3D.subscribe(
@@ -52,7 +57,7 @@ export const createThreeManager = (canvas: HTMLCanvasElement): void => {
         mirrorModel(model, mirror);
       } else {
         modelId = model.uuid;
-        world.remove(world.children[0]);
+        world.remove(world.children[2]);
         addModel(model, world, mirror);
       }
     },
