@@ -124,11 +124,11 @@ export const addModel = (
   gen1: boolean = false
 ): void => {
   // console.log(model, world);
-  if (gen1 === true) {
-    model.scale.x = 100 / 2;
-    model.scale.y = 100 / 2;
-    model.scale.z = 100 / 2;
-  }
+  // if (gen1 === true) {
+  model.scale.x = 100 / 2;
+  model.scale.y = 100 / 2;
+  model.scale.z = 100 / 2;
+  // }
 
   model.traverse(obj => {
     if (obj instanceof Mesh) {
